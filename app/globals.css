@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,7 +50,7 @@
   }
 
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
@@ -103,3 +104,4 @@ html {
 .glow {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
+
