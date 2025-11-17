@@ -1,3 +1,4 @@
+// lib/api.ts
 import { storage } from './storage'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/v1'
@@ -41,26 +42,25 @@ class ApiClient {
     try {
       const response = await fetch(`${this.baseURL}${endpoint}`, config)
 
-      // Handle 401 - Token expired
+      // Handle 401 - Token expired → try refresh
       if (response.status === 401 && requiresAuth) {
-        // Try to refresh token
         const refreshed = await this.refreshToken()
         if (refreshed) {
-          // Retry original request
+          // Retry original request with new token
           const token = storage.getAccessToken()
-          config.headers = {
-            ...config.headers,
-            Authorization: `Bearer ${token}`,
+          if (token) {
+            config.headers = {
+              ...config.headers,
+              Authorization: `Bearer ${token}`,
+            }
           }
           const retryResponse = await fetch(`${this.baseURL}${endpoint}`, config)
-          
           if (!retryResponse.ok) {
             throw new Error('Request failed after token refresh')
           }
-          
-          return retryResponse.json()
+          const data = await retryResponse.json() as T
+          return data
         } else {
-          // Refresh failed, logout user
           storage.clearAll()
           window.location.href = '/login'
           throw new Error('Session expired')
@@ -74,7 +74,10 @@ class ApiClient {
         throw new Error(error.detail || 'Request failed')
       }
 
-      return response.json()
+      
+      const data = await response.json() as T
+      return data
+
     } catch (error) {
       console.error('API request failed:', error)
       throw error
@@ -129,12 +132,9 @@ class ApiClient {
     })
   }
 
-  // Generic authenticated request
+  // Generic authenticated requests
   async get<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'GET',
-      requiresAuth: true,
-    })
+    return this.request<T>(endpoint, { method: 'GET', requiresAuth: true })
   }
 
   async post<T>(endpoint: string, data: any): Promise<T> {
@@ -154,12 +154,8 @@ class ApiClient {
   }
 
   async delete<T>(endpoint: string): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: 'DELETE',
-      requiresAuth: true,
-    })
+    return this.request<T>(endpoint, { method: 'DELETE', requiresAuth: true })
   }
 }
 
 export const api = new ApiClient(API_URL)
-
