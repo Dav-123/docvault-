@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import {AuthProvider} from '@/contexts/AuthContext'
 import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -17,7 +18,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://docvault.vercel.app'),
+  metadataBase: new URL('https://docvault-three.vercel.app'),
   title: {
     default: 'DocVault - Offline Documentation Library | Access 500K+ Docs Anywhere',
     template: '%s | DocVault'
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://docvault.vercel.app',
+    url: 'https://docvault-three.vercel.app',
     title: 'DocVault - Offline Documentation Library',
     description: 'Access 500,000+ programming docs offline. Learn anywhere, anytime. Free forever.',
     siteName: 'DocVault',
@@ -93,7 +94,7 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://docvault.vercel.app',
+    canonical: 'https://docvault-three.vercel.app',
   },
   category: 'technology',
 }
@@ -134,7 +135,9 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(inter.className, "antialiased")}>
+          <AuthProvider>
         {children}
+         </AuthProvider>
       </body>
     </html>
   )
