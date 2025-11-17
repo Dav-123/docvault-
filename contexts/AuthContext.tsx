@@ -1,3 +1,4 @@
+// contexts/AuthContext.tsx
 "use client"
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
@@ -21,21 +22,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check if user is authenticated on mount
     const initAuth = async () => {
       if (auth.isAuthenticated()) {
         const storedUser = auth.getStoredUser()
         if (storedUser) {
           setUser(storedUser)
         }
-        
-        // Fetch fresh user data
+
         try {
           const currentUser = await auth.getCurrentUser()
-          setUser(currentUser)
+          if (currentUser) {
+            setUser(currentUser)
+          }
         } catch (error) {
-          console.error('Failed to fetch user:', error)
-          setUser(null)
+          console.error('Failed to fetch current user:', error)
+          auth.logout() // Clear invalid session
         }
       }
       setIsLoading(false)
@@ -45,13 +46,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   const login = async (email: string, password: string) => {
-    const response = await auth.login({ email, password })
-    setUser(response.user)
+    const user = await auth.login({ email, password })  // ← Now returns User directly
+    setUser(user)
   }
 
   const register = async (email: string, password: string, name: string) => {
-    const response = await auth.register({ email, password, name })
-    setUser(response.user)
+    const user = await auth.register({ email, password, name })  // ← Now returns User directly
+    setUser(user)
   }
 
   const logout = async () => {
@@ -61,7 +62,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const refetchUser = async () => {
     const currentUser = await auth.getCurrentUser()
-    setUser(currentUser)
+    if (currentUser) {
+      setUser(currentUser)
+    } else {
+      setUser(null)
+    }
   }
 
   return (
