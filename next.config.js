@@ -178,6 +178,26 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },
+  // next.config.js
+  async redirects() {
+    return [
+      {
+        source: '/register',
+        destination: '/auth/register',
+        permanent: true,        // → good for SEO
+      },
+      {
+        source: '/login',
+        destination: '/auth/login',
+        permanent: true,
+      },
+      {
+        source: '/forgot-password',
+        destination: '/auth/forgot-password',
+        permanent: true,
+      },
+    ]
+  },
 
   // Headers for SEO and security (unchanged — perfect!)
   async headers() {
