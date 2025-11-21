@@ -5,6 +5,9 @@ export interface User {
   subscription_tier: 'free' | 'pro' | 'lifetime'
   created_at: string
   email_verified: boolean
+  xp?: number
+  level?: number
+  streak: number
 }
 
 export interface AuthResponse {
