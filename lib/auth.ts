@@ -51,7 +51,7 @@ export const auth = {
   
   async getCurrentUser(): Promise<User | null> {
         try {
-      const user = await api.getCurrentUser()
+      const user = await api.getCurrentUser() as User
       storage.setUser(user)
       return user
     } catch (error) {
