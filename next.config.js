@@ -196,6 +196,11 @@ const nextConfig = {
         destination: '/auth/forgot-password',
         permanent: true,
       },
+      {
+        source: '/dashboard',
+        destination: '/app/dashboard',
+        permanent: true,
+      }
     ]
   },
 
