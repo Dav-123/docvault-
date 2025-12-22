@@ -20,10 +20,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://docvault-three.vercel.app'),
   title: {
-    default: 'DocVault - Offline Documentation Library | Access 500K+ Docs Anywhere',
+    default: 'DocVault - Offline Documentation Library | Access 500K+ Docs Anywhere | Built by David Briggs',
     template: '%s | DocVault'
   },
-  description: 'The ultimate offline-first documentation library. Access 500,000+ programming docs, tutorials, and guides without internet. Free forever tier. Python, JavaScript, React, and more.',
+  description: 'The ultimate offline-first documentation library. Access 500,000+ programming docs, tutorials, ai, and guides without internet. Free forever tier. Python, JavaScript, React, and more.Built by David Briggs',
   keywords: [
     'offline documentation',
     'programming docs',
@@ -38,22 +38,23 @@ export const metadata: Metadata = {
     'DocVault',
     'dev docs alternative',
     'notion alternative',
+    'David Briggs Docvault'
     'obsidian for developers'
   ],
-  authors: [{ name: 'DocVault Team' }],
-  creator: 'DocVault',
-  publisher: 'DocVault',
+  authors: [{ name: 'David Briggs' }],
+  creator: 'David Briggs',
+  publisher: 'David Briggs',
   formatDetection: {
-    email: false,
+    email: 'davidbriggd478@gmail.com',
     address: false,
-    telephone: false,
+    telephone: '2349029219449',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://docvault-three.vercel.app',
-    title: 'DocVault - Offline Documentation Library',
-    description: 'Access 500,000+ programming docs offline. Learn anywhere, anytime. Free forever.',
+    title: 'DocVault - Offline Documentation Library Built by David Briggs',
+    description: 'Access 500,000+ programming docs offline. Learn anywhere, anytime. Free forever. Build by David Briggs',
     siteName: 'DocVault',
     images: [
       {
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     title: 'DocVault - Offline Documentation Library',
     description: 'Access 500,000+ programming docs offline. Learn anywhere, anytime.',
     images: ['/og-image.png'],
-    creator: '@docvault',
+    creator: '@DavidBriggs',
   },
   robots: {
     index: true,
@@ -129,7 +130,7 @@ export default function RootLayout({
                 "ratingValue": "4.9",
                 "ratingCount": "1250"
               },
-              "description": "Offline-first documentation library with 500,000+ programming docs, tutorials, and guides."
+              "description": "Offline-first documentation library with 500,000+ programming docs, tutorials, and guides Built by David Briggs."
             })
           }}
         />
