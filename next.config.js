@@ -200,6 +200,11 @@ const nextConfig = {
         source: '/dashboard',
         destination: '/app/dashboard',
         permanent: true,
+      },
+      {
+        source: '/sitemap.xml',
+        destination: '/sitemap',
+        permanent: true,
       }
     ]
   },

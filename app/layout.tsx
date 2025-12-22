@@ -45,9 +45,9 @@ export const metadata: Metadata = {
   creator: 'David Briggs',
   publisher: 'David Briggs',
   formatDetection: {
-    email: 'davidbriggd478@gmail.com',
+    email: false,
     address: false,
-    telephone: '2349029219449',
+    telephone: false,
   },
   openGraph: {
     type: 'website',
