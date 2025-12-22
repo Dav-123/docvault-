@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     'DocVault',
     'dev docs alternative',
     'notion alternative',
-    'David Briggs Docvault'
+    'David Briggs Docvault',
     'obsidian for developers'
   ],
   authors: [{ name: 'David Briggs' }],
