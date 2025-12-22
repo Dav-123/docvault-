@@ -49,6 +49,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  verification: {
+    google: '2CwhtIyL-D38le9StklEvLvLr8AQ1oKe0XxU4s1tMFs',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
